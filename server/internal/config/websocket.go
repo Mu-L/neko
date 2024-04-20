@@ -1,8 +1,6 @@
 package config
 
 import (
-	"path/filepath"
-
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -13,9 +11,6 @@ type WebSocket struct {
 	Locks         []string
 
 	ControlProtection bool
-
-	FileTransferEnabled bool
-	FileTransferPath    string
 }
 
 func (WebSocket) Init(cmd *cobra.Command) error {
@@ -39,18 +34,6 @@ func (WebSocket) Init(cmd *cobra.Command) error {
 		return err
 	}
 
-	// File transfer
-
-	cmd.PersistentFlags().Bool("file_transfer_enabled", false, "enable file transfer feature")
-	if err := viper.BindPFlag("file_transfer_enabled", cmd.PersistentFlags().Lookup("file_transfer_enabled")); err != nil {
-		return err
-	}
-
-	cmd.PersistentFlags().String("file_transfer_path", "/home/neko/Downloads", "path to use for file transfer")
-	if err := viper.BindPFlag("file_transfer_path", cmd.PersistentFlags().Lookup("file_transfer_path")); err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -60,8 +43,4 @@ func (s *WebSocket) Set() {
 	s.Locks = viper.GetStringSlice("locks")
 
 	s.ControlProtection = viper.GetBool("control_protection")
-
-	s.FileTransferEnabled = viper.GetBool("file_transfer_enabled")
-	s.FileTransferPath = viper.GetString("file_transfer_path")
-	s.FileTransferPath = filepath.Clean(s.FileTransferPath)
 }

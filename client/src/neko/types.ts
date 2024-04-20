@@ -22,20 +22,3 @@ export interface ScreenResolution {
   height: number
   rate: number
 }
-
-export interface FileListItem {
-  name: string
-  type: 'file' | 'dir'
-  size: number
-}
-
-export interface FileTransfer {
-  id: number
-  name: string
-  direction: 'upload' | 'download'
-  size: number
-  progress: number
-  status: 'pending' | 'inprogress' | 'completed' | 'failed'
-  error?: string
-  abortController?: AbortController
-}
