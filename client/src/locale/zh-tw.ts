@@ -54,33 +54,6 @@ export const controls = {
   hasnot: '您沒有控制權',
 }
 
-export const locks = {
-  control: {
-    lock: '鎖定控制（對使用者）',
-    unlock: '解鎖控制（對使用者）',
-    locked: '已鎖定控制（對使用者）',
-    unlocked: '已解鎖控制（對使用者）',
-    notif_locked: '已鎖定使用者控制',
-    notif_unlocked: '已解鎖使用者控制',
-  },
-  login: {
-    lock: '鎖定房間（對使用者）',
-    unlock: '解鎖房間（對使用者）',
-    locked: '房間已鎖定（對使用者）',
-    unlocked: '房間已解鎖（對使用者）',
-    notif_locked: '已鎖定房間',
-    notif_unlocked: '已解鎖房間',
-  },
-  file_transfer: {
-    lock: '鎖定檔案傳輸（對使用者）',
-    unlock: '解鎖檔案傳輸（對使用者）',
-    locked: '檔案傳輸已鎖定（對使用者）',
-    unlocked: '檔案傳輸已解鎖（對使用者）',
-    notif_locked: '已鎖定檔案傳輸',
-    notif_unlocked: '已解鎖檔案傳輸',
-  },
-}
-
 export const setting = {
   scroll: '滾動靈敏度',
   scroll_invert: '反向滾動',

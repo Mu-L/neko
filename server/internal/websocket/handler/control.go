@@ -33,12 +33,6 @@ func (h *MessageHandler) controlRelease(id string, session types.Session) error 
 func (h *MessageHandler) controlRequest(id string, session types.Session) error {
 	// check for host
 	if !h.sessions.HasHost() {
-		// check if control is locked or user is admin
-		if h.state.IsLocked("control") && !session.Admin() {
-			h.logger.Debug().Msg("control is locked")
-			return nil
-		}
-
 		// set host
 		err := h.sessions.SetHost(id)
 		if err != nil {
@@ -96,12 +90,6 @@ func (h *MessageHandler) controlGive(id string, session types.Session, payload *
 		return nil
 	}
 
-	// check if control is locked or giver is admin
-	if h.state.IsLocked("control") && !session.Admin() {
-		h.logger.Debug().Msg("control is locked")
-		return nil
-	}
-
 	// set host
 	err := h.sessions.SetHost(payload.ID)
 	if err != nil {
@@ -124,7 +112,7 @@ func (h *MessageHandler) controlGive(id string, session types.Session, payload *
 
 func (h *MessageHandler) controlClipboard(id string, session types.Session, payload *message.Clipboard) error {
 	// check if session can access clipboard
-	if (!h.webrtc.ImplicitControl() && !h.sessions.IsHost(id)) || (h.webrtc.ImplicitControl() && !h.sessions.CanControl(id)) {
+	if (!h.webrtc.ImplicitControl() && !h.sessions.IsHost(id)) || h.webrtc.ImplicitControl() {
 		h.logger.Debug().Str("id", id).Msg("cannot access clipboard")
 		return nil
 	}
@@ -135,7 +123,7 @@ func (h *MessageHandler) controlClipboard(id string, session types.Session, payl
 
 func (h *MessageHandler) controlKeyboard(id string, session types.Session, payload *message.Keyboard) error {
 	// check if session can control keyboard
-	if (!h.webrtc.ImplicitControl() && !h.sessions.IsHost(id)) || (h.webrtc.ImplicitControl() && !h.sessions.CanControl(id)) {
+	if (!h.webrtc.ImplicitControl() && !h.sessions.IsHost(id)) || h.webrtc.ImplicitControl() {
 		h.logger.Debug().Str("id", id).Msg("cannot control keyboard")
 		return nil
 	}

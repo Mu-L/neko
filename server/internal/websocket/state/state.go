@@ -35,27 +35,3 @@ func (s *State) GetBanned(ip string) (string, bool) {
 func (s *State) AllBanned() map[string]string {
 	return s.banned
 }
-
-// Lock
-
-func (s *State) Lock(resource, id string) {
-	s.locked[resource] = id
-}
-
-func (s *State) Unlock(resource string) {
-	delete(s.locked, resource)
-}
-
-func (s *State) IsLocked(resource string) bool {
-	_, ok := s.locked[resource]
-	return ok
-}
-
-func (s *State) GetLocked(resource string) (string, bool) {
-	id, ok := s.locked[resource]
-	return id, ok
-}
-
-func (s *State) AllLocked() map[string]string {
-	return s.locked
-}

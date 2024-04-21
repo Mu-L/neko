@@ -25,15 +25,6 @@ func New(sessions types.SessionManager, desktop types.DesktopManager, capture ty
 
 	state := state.New()
 
-	// apply default locks
-	for _, lock := range conf.Locks {
-		state.Lock(lock, "") // empty session ID
-	}
-
-	if len(conf.Locks) > 0 {
-		logger.Info().Msgf("locked resources: %+v", conf.Locks)
-	}
-
 	handler := handler.New(
 		sessions,
 		desktop,
@@ -261,7 +252,6 @@ func (ws *WebSocketHandler) Stats() types.Stats {
 		Members:     ws.sessions.Members(),
 
 		Banned: ws.state.AllBanned(),
-		Locked: ws.state.AllLocked(),
 
 		ServerStartedAt: ws.serverStartedAt,
 		LastAdminLeftAt: ws.lastAdminLeftAt,
@@ -269,10 +259,6 @@ func (ws *WebSocketHandler) Stats() types.Stats {
 
 		ImplicitControl: ws.webrtc.ImplicitControl(),
 	}
-}
-
-func (ws *WebSocketHandler) IsLocked(resource string) bool {
-	return ws.state.IsLocked(resource)
 }
 
 func (ws *WebSocketHandler) IsAdmin(password string) (bool, error) {

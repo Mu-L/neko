@@ -52,33 +52,6 @@ export const controls = {
   unlock: 'Steuerung entsperren',
 }
 
-export const locks = {
-  control: {
-    lock: 'Steuerung sperren (für Nutzer)',
-    unlock: 'Steuerung entsperren (für Nutzer)',
-    locked: 'Steuerung gesperrt (für Nutzer)',
-    unlocked: 'Steuerung entsperrt (für Nutzer)',
-    notif_locked: 'Steuerung sperren für Nutzer',
-    notif_unlocked: 'Steuerung entsperren für Nutzer',
-  },
-  login: {
-    lock: 'Raum sperren (für Nutzer)',
-    unlock: 'Raum entsperren (für Nutzer)',
-    locked: 'Raum gesperrt (für Nutzer)',
-    unlocked: 'Raum entsperrt (für Nutzer)',
-    notif_locked: 'Raum gesperrt',
-    notif_unlocked: 'Raum entsperrt',
-  },
-  file_transfer: {
-    lock: 'Dateiübertragung sperren (für Nutzer)',
-    unlock: 'Dateiübertragung entsperren (für Nutzer)',
-    locked: 'Dateiübertragung gesperrt (für Nutzer)',
-    unlocked: 'Dateiübertragung entsperrt (für Nutzer)',
-    notif_locked: 'Dateiübertragung gesperrt',
-    notif_unlocked: 'Dateiübertragung entsperrt',
-  },
-}
-
 export const setting = {
   scroll: 'Scroll-Empfindlichkeit',
   scroll_invert: 'Bildlauf umkehren',

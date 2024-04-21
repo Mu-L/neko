@@ -6,45 +6,6 @@
     </a>
     <ul class="menu">
       <li>
-        <i
-          :class="[{ disabled: !admin }, { locked: isLocked('control') }, 'fas', 'fa-mouse']"
-          @click="toggleLock('control')"
-          v-tooltip="{
-            content: lockedTooltip('control'),
-            placement: 'bottom',
-            offset: 5,
-            boundariesElement: 'body',
-            delay: { show: 300, hide: 100 },
-          }"
-        />
-      </li>
-      <li>
-        <i
-          :class="[{ disabled: !admin }, { locked: isLocked('login') }, locked ? 'fa-lock' : 'fa-lock-open', 'fas']"
-          @click="toggleLock('login')"
-          v-tooltip="{
-            content: lockedTooltip('login'),
-            placement: 'bottom',
-            offset: 5,
-            boundariesElement: 'body',
-            delay: { show: 300, hide: 100 },
-          }"
-        />
-      </li>
-      <li v-if="fileTransfer">
-        <i
-          :class="[{ disabled: !admin }, { locked: isLocked('file_transfer') }, 'fas', 'fa-file']"
-          @click="toggleLock('file_transfer')"
-          v-tooltip="{
-            content: lockedTooltip('file_transfer'),
-            placement: 'bottom',
-            offset: 5,
-            boundariesElement: 'body',
-            delay: { show: 300, hide: 100 },
-          }"
-        />
-      </li>
-      <li>
         <span v-if="showBadge" class="badge">&bull;</span>
         <i class="fas fa-bars toggle" @click="toggleMenu" />
       </li>
@@ -162,14 +123,6 @@
 
   @Component({ name: 'neko-settings' })
   export default class extends Vue {
-    get admin() {
-      return this.$accessor.user.admin
-    }
-
-    get locked() {
-      return this.$accessor.locked
-    }
-
     get side() {
       return this.$accessor.client.side
     }
@@ -182,30 +135,10 @@
       return !this.side && this.readTexts != this.texts
     }
 
-    get fileTransfer() {
-      return this.$accessor.remote.fileTransfer
-    }
-
-    toggleLock(resource: AdminLockResource) {
-      this.$accessor.toggleLock(resource)
-    }
-
-    isLocked(resource: AdminLockResource): boolean {
-      return this.$accessor.isLocked(resource)
-    }
-
     readTexts: number = 0
     toggleMenu() {
       this.$accessor.client.toggleSide()
       this.readTexts = this.texts
-    }
-
-    lockedTooltip(resource: AdminLockResource) {
-      if (this.admin) {
-        return this.$t(`locks.${resource}.` + (this.isLocked(resource) ? `unlock` : `lock`))
-      }
-
-      return this.$t(`locks.${resource}.` + (this.isLocked(resource) ? `locked` : `unlocked`))
     }
   }
 </script>

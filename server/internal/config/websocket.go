@@ -8,7 +8,6 @@ import (
 type WebSocket struct {
 	Password      string
 	AdminPassword string
-	Locks         []string
 }
 
 func (WebSocket) Init(cmd *cobra.Command) error {
@@ -22,16 +21,10 @@ func (WebSocket) Init(cmd *cobra.Command) error {
 		return err
 	}
 
-	cmd.PersistentFlags().StringSlice("locks", []string{}, "resources, that will be locked when starting (control, login)")
-	if err := viper.BindPFlag("locks", cmd.PersistentFlags().Lookup("locks")); err != nil {
-		return err
-	}
-
 	return nil
 }
 
 func (s *WebSocket) Set() {
 	s.Password = viper.GetString("password")
 	s.AdminPassword = viper.GetString("password_admin")
-	s.Locks = viper.GetStringSlice("locks")
 }

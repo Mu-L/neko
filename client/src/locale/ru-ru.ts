@@ -54,34 +54,6 @@ export const controls = {
   hasnot: 'Вы не управляете',
 }
 
-export const locks = {
-  control: {
-    lock: 'Закрепить управление (для пользователей)',
-    unlock: 'Открепить управление (для пользователей)',
-    locked: 'Управление закреплено (для пользователей)',
-    unlocked: 'Управление откреплено (для пользователей)',
-    notif_locked: 'закреплено управление для пользователей',
-    notif_unlocked: 'откреплено управление для пользователей',
-  },
-  login: {
-    lock: 'Закрыть комнату (для пользователей)',
-    unlock: 'Открыть комнату (для пользователей)',
-    locked: 'Комната закрыта (для пользователей)',
-    unlocked: 'Комната открыта (для пользователей)',
-    notif_locked: 'комната закрыта',
-    notif_unlocked: 'комната открыта',
-  },
-  // TODO
-  //file_transfer: {
-  //  lock: 'Lock File Transfer (for users)',
-  //  unlock: 'Unlock File Transfer (for users)',
-  //  locked: 'File Transfer Locked (for users)',
-  //  unlocked: 'File Transfer Unlocked (for users)',
-  //  notif_locked: 'locked file transfer',
-  //  notif_unlocked: 'unlocked file transfer',
-  //},
-}
-
 export const setting = {
   scroll: 'Чувствительность прокрутки',
   scroll_invert: 'Инвертировать прокрутку',

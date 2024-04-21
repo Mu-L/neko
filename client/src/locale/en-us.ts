@@ -54,33 +54,6 @@ export const controls = {
   hasnot: 'You do not have control',
 }
 
-export const locks = {
-  control: {
-    lock: 'Lock Controls (for users)',
-    unlock: 'Unlock Controls (for users)',
-    locked: 'Controls Locked (for users)',
-    unlocked: 'Controls Unlocked (for users)',
-    notif_locked: 'locked controls for users',
-    notif_unlocked: 'unlocked controls for users',
-  },
-  login: {
-    lock: 'Lock Room (for users)',
-    unlock: 'Unlock Room (for users)',
-    locked: 'Room Locked (for users)',
-    unlocked: 'Room Unlocked (for users)',
-    notif_locked: 'locked the room',
-    notif_unlocked: 'unlocked the room',
-  },
-  file_transfer: {
-    lock: 'Lock File Transfer (for users)',
-    unlock: 'Unlock File Transfer (for users)',
-    locked: 'File Transfer Locked (for users)',
-    unlocked: 'File Transfer Unlocked (for users)',
-    notif_locked: 'locked file transfer',
-    notif_unlocked: 'unlocked file transfer',
-  },
-}
-
 export const setting = {
   scroll: 'Scroll Sensitivity',
   scroll_invert: 'Invert Scroll',

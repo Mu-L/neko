@@ -55,8 +55,6 @@ type SessionManager interface {
 	ClearHost()
 	Has(id string) bool
 	Get(id string) (Session, bool)
-	SetControlLocked(locked bool)
-	CanControl(id string) bool
 	Members() []*Member
 	Admins() []*Member
 	Destroy(id string)

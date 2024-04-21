@@ -19,7 +19,6 @@ export const state = () => ({
   active: false,
   connecting: false,
   connected: false,
-  locked: {} as Record<string, boolean>,
 })
 
 export const mutations = mutationTree(state, {
@@ -30,14 +29,6 @@ export const mutations = mutationTree(state, {
   setLogin(state, { displayname, password }: { displayname: string; password: string }) {
     state.displayname = displayname
     state.password = password
-  },
-
-  setLocked(state, resource: string) {
-    Vue.set(state.locked, resource, true)
-  },
-
-  setUnlocked(state, resource: string) {
-    Vue.set(state.locked, resource, false)
   },
 
   setConnnecting(state) {
@@ -55,9 +46,7 @@ export const mutations = mutationTree(state, {
   },
 })
 
-export const getters = getterTree(state, {
-  isLocked: (state) => (resource: AdminLockResource) => resource in state.locked && state.locked[resource],
-})
+export const getters = getterTree(state, {})
 
 export const actions = actionTree(
   { state, getters, mutations },
@@ -65,30 +54,6 @@ export const actions = actionTree(
     initialise() {
       accessor.emoji.initialise()
       accessor.settings.initialise()
-    },
-
-    lock(_, resource: AdminLockResource) {
-      if (!accessor.connected || !accessor.user.admin) {
-        return
-      }
-
-      $client.sendMessage(EVENT.ADMIN.LOCK, { resource })
-    },
-
-    unlock(_, resource: AdminLockResource) {
-      if (!accessor.connected || !accessor.user.admin) {
-        return
-      }
-
-      $client.sendMessage(EVENT.ADMIN.UNLOCK, { resource })
-    },
-
-    toggleLock(_, resource: AdminLockResource) {
-      if (accessor.isLocked(resource)) {
-        accessor.unlock(resource)
-      } else {
-        accessor.lock(resource)
-      }
     },
 
     login(store, { displayname, password }: { displayname: string; password: string }) {

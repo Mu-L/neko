@@ -11,7 +11,6 @@ type Stats struct {
 	Members     []*Member `json:"members"`
 
 	Banned map[string]string `json:"banned"` // IP -> session ID (that banned it)
-	Locked map[string]string `json:"locked"` // resource name -> session ID (that locked it)
 
 	ServerStartedAt time.Time  `json:"server_started_at"`
 	LastAdminLeftAt *time.Time `json:"last_admin_left_at"`
@@ -31,6 +30,5 @@ type WebSocketHandler interface {
 	Shutdown() error
 	Upgrade(w http.ResponseWriter, r *http.Request) error
 	Stats() Stats
-	IsLocked(resource string) bool
 	IsAdmin(password string) (bool, error)
 }

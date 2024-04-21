@@ -57,35 +57,6 @@ export const controls = {
   //hasnot: 'You do not have control',
 }
 
-export const locks = {
-  // TODO
-  //control: {
-  //  lock: 'Lock Controls (for users)',
-  //  unlock: 'Unlock Controls (for users)',
-  //  locked: 'Controls Locked (for users)',
-  //  unlocked: 'Controls Unlocked (for users)',
-  //  notif_locked: 'locked controls for users',
-  //  notif_unlocked: 'unlocked controls for users',
-  //},
-  login: {
-    lock: 'Bloquear sala (para usuarios)',
-    unlock: 'Desbloquear sala (para usuarios)',
-    locked: 'Sala bloqueada (para usuarios)',
-    unlocked: 'Sala desbloqueada (para usuarios)',
-    notif_locked: 'bloqueó la sala',
-    notif_unlocked: 'desbloqueó la sala',
-  },
-  // TODO
-  //file_transfer: {
-  //  lock: 'Lock File Transfer (for users)',
-  //  unlock: 'Unlock File Transfer (for users)',
-  //  locked: 'File Transfer Locked (for users)',
-  //  unlocked: 'File Transfer Unlocked (for users)',
-  //  notif_locked: 'locked file transfer',
-  //  notif_unlocked: 'unlocked file transfer',
-  //},
-}
-
 export const setting = {
   scroll: 'Sensibilidad del Scroll',
   scroll_invert: 'Invertir Scroll',

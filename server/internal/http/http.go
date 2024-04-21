@@ -93,11 +93,6 @@ func New(conf *config.Server, webSocketHandler types.WebSocketHandler, desktop t
 			return
 		}
 
-		if webSocketHandler.IsLocked("login") {
-			http.Error(w, "room is locked", http.StatusLocked)
-			return
-		}
-
 		quality, err := strconv.Atoi(r.URL.Query().Get("quality"))
 		if err != nil {
 			quality = 90

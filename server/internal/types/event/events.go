@@ -49,9 +49,7 @@ const (
 const (
 	ADMIN_BAN     = "admin/ban"
 	ADMIN_KICK    = "admin/kick"
-	ADMIN_LOCK    = "admin/lock"
 	ADMIN_MUTE    = "admin/mute"
-	ADMIN_UNLOCK  = "admin/unlock"
 	ADMIN_UNMUTE  = "admin/unmute"
 	ADMIN_CONTROL = "admin/control"
 	ADMIN_RELEASE = "admin/release"

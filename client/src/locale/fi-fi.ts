@@ -54,34 +54,6 @@ export const controls = {
   hasnot: 'Sinulle ei ole kontrolleja',
 }
 
-export const locks = {
-  control: {
-    lock: 'Lukitse kontrollit (käyttäjiltä)',
-    unlock: 'Vapauta kontrollit (käyttäjiltä)',
-    locked: 'Kontrollit lukittu (käyttäjiltä)',
-    unlocked: 'Kontrollit vapautettu (käyttäjiltä)',
-    notif_locked: 'kontrollit on lukittu käyttäjiltä',
-    notif_unlocked: 'kontrollit on vapautettu käyttäjille',
-  },
-  login: {
-    lock: 'Lukitse huone (käyttäjiltä)',
-    unlock: 'Vapauta huone (käyttäjiltä)',
-    locked: 'Huone lukittu (käyttäjiltä)',
-    unlocked: 'Huone vapautettu (käyttäjiltä)',
-    notif_locked: 'lukittu huone',
-    notif_unlocked: 'vapautettu huone',
-  },
-  // TODO
-  //file_transfer: {
-  //  lock: 'Lock File Transfer (for users)',
-  //  unlock: 'Unlock File Transfer (for users)',
-  //  locked: 'File Transfer Locked (for users)',
-  //  unlocked: 'File Transfer Unlocked (for users)',
-  //  notif_locked: 'locked file transfer',
-  //  notif_unlocked: 'unlocked file transfer',
-  //},
-}
-
 export const setting = {
   scroll: 'Scrollin herkkyys',
   scroll_invert: 'Käänteinen Scroll',

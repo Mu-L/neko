@@ -133,17 +133,9 @@ export class NekoClient extends BaseClient implements EventEmitter<NekoEvents> {
   /////////////////////////////
   // System Events
   /////////////////////////////
-  protected [EVENT.SYSTEM.INIT]({ implicit_hosting, locks, file_transfer }: SystemInitPayload) {
+  protected [EVENT.SYSTEM.INIT]({ implicit_hosting, file_transfer }: SystemInitPayload) {
     this.$accessor.remote.setImplicitHosting(implicit_hosting)
     this.$accessor.remote.setFileTransfer(file_transfer)
-
-    for (const resource in locks) {
-      this[EVENT.ADMIN.LOCK]({
-        event: EVENT.ADMIN.LOCK,
-        resource: resource as AdminLockResource,
-        id: locks[resource],
-      })
-    }
   }
 
   protected [EVENT.SYSTEM.DISCONNECT]({ message }: SystemMessagePayload) {
@@ -472,28 +464,6 @@ export class NekoClient extends BaseClient implements EventEmitter<NekoEvents> {
       content: this.$vue.$t('notifications.unmuted', {
         name: member.id == this.id && this.$vue.$te('you') ? this.$vue.$t('you') : member.displayname,
       }) as string,
-      type: 'event',
-      created: new Date(),
-    })
-  }
-
-  protected [EVENT.ADMIN.LOCK]({ id, resource }: AdminLockMessage) {
-    this.$accessor.setLocked(resource)
-
-    this.$accessor.chat.newMessage({
-      id,
-      content: this.$vue.$t(`locks.${resource}.notif_locked`) as string,
-      type: 'event',
-      created: new Date(),
-    })
-  }
-
-  protected [EVENT.ADMIN.UNLOCK]({ id, resource }: AdminLockMessage) {
-    this.$accessor.setUnlocked(resource)
-
-    this.$accessor.chat.newMessage({
-      id,
-      content: this.$vue.$t(`locks.${resource}.notif_unlocked`) as string,
       type: 'event',
       created: new Date(),
     })

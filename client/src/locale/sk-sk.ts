@@ -57,34 +57,6 @@ export const controls = {
   //hasnot: 'You do not have control',
 }
 
-export const locks = {
-  control: {
-    lock: 'Zakázať ovládanie (pre používateľov)',
-    unlock: 'Povoliť ovládanie (pre používateľov)',
-    locked: 'Ovládanie je zakázané (pre používateľov)',
-    unlocked: 'Ovládanie je povolené (pre používateľov)',
-    notif_locked: 'zakázal/a ovládanie pre používateľov',
-    notif_unlocked: 'povolil/a ovládanie pre používateľov',
-  },
-  login: {
-    lock: 'Zamknúť miestnosť (pre používateľov)',
-    unlock: 'Odomknúť miestnosť (pre používateľov)',
-    locked: 'Miestnosť je zamknutá (pre používateľov)',
-    unlocked: 'Miestnosť odomknutá (pre používateľov)',
-    notif_locked: 'miestnosť bola zamknutá',
-    notif_unlocked: 'miestnosť bola odomknutá',
-  },
-  // TODO
-  //file_transfer: {
-  //  lock: 'Lock File Transfer (for users)',
-  //  unlock: 'Unlock File Transfer (for users)',
-  //  locked: 'File Transfer Locked (for users)',
-  //  unlocked: 'File Transfer Unlocked (for users)',
-  //  notif_locked: 'locked file transfer',
-  //  notif_unlocked: 'unlocked file transfer',
-  //},
-}
-
 export const setting = {
   scroll: 'Citlivosť kolieska myši',
   scroll_invert: 'Invertovať koliesko myši',

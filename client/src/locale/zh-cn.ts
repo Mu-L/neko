@@ -54,34 +54,6 @@ export const controls = {
   hasnot: '你没有控制',
 }
 
-export const locks = {
-  control: {
-    lock: '对所有用户进行锁定控制',
-    unlock: '对所有用户进行解锁控制',
-    locked: '锁定的控制装置',
-    unlocked: '解锁的控制装置',
-    notif_locked: '为用户锁定控制',
-    notif_unlocked: '为用户解锁控制',
-  },
-  login: {
-    lock: '所有用户的锁定室',
-    unlock: '所有用户的解锁室',
-    locked: '为所有用户锁定的房间',
-    unlocked: '为所有用户解锁的房间',
-    notif_locked: '锁上房间',
-    notif_unlocked: '解锁房间',
-  },
-  // TODO
-  //file_transfer: {
-  //  lock: 'Lock File Transfer (for users)',
-  //  unlock: 'Unlock File Transfer (for users)',
-  //  locked: 'File Transfer Locked (for users)',
-  //  unlocked: 'File Transfer Unlocked (for users)',
-  //  notif_locked: 'locked file transfer',
-  //  notif_unlocked: 'unlocked file transfer',
-  //},
-}
-
 export const setting = {
   scroll: '滚动敏感度',
   scroll_invert: '反转滚动敏感度',

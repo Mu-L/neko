@@ -39,7 +39,7 @@ type PayloadKey struct {
 }
 
 func (manager *WebRTCManager) handle(id string, msg webrtc.DataChannelMessage) error {
-	if (!manager.config.ImplicitControl && !manager.sessions.IsHost(id)) || (manager.config.ImplicitControl && !manager.sessions.CanControl(id)) {
+	if (!manager.config.ImplicitControl && !manager.sessions.IsHost(id)) || manager.config.ImplicitControl {
 		return nil
 	}
 

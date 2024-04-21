@@ -50,11 +50,6 @@ func (h *MessageHandler) Connected(admin bool, address string) (bool, string) {
 		}
 	}
 
-	if h.state.IsLocked("login") && !admin {
-		h.logger.Debug().Msg("server locked")
-		return false, "locked"
-	}
-
 	return true, ""
 }
 
@@ -155,18 +150,6 @@ func (h *MessageHandler) Message(id string, raw []byte) error {
 		return errors.Wrapf(h.boradcastDestroy(session), "%s failed", header.Event)
 
 	// Admin Events
-	case event.ADMIN_LOCK:
-		payload := &message.AdminLock{}
-		return errors.Wrapf(
-			utils.Unmarshal(payload, raw, func() error {
-				return h.adminLock(id, session, payload)
-			}), "%s failed", header.Event)
-	case event.ADMIN_UNLOCK:
-		payload := &message.AdminLock{}
-		return errors.Wrapf(
-			utils.Unmarshal(payload, raw, func() error {
-				return h.adminUnlock(id, session, payload)
-			}), "%s failed", header.Event)
 	case event.ADMIN_CONTROL:
 		return errors.Wrapf(h.adminControl(id, session), "%s failed", header.Event)
 	case event.ADMIN_RELEASE:

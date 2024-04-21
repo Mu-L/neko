@@ -51,8 +51,6 @@ export const EVENT = {
   ADMIN: {
     BAN: 'admin/ban',
     KICK: 'admin/kick',
-    LOCK: 'admin/lock',
-    UNLOCK: 'admin/unlock',
     MUTE: 'admin/mute',
     UNMUTE: 'admin/unmute',
     CONTROL: 'admin/control',
@@ -102,8 +100,6 @@ export type BroadcastEvents =
 export type AdminEvents =
   | typeof EVENT.ADMIN.BAN
   | typeof EVENT.ADMIN.KICK
-  | typeof EVENT.ADMIN.LOCK
-  | typeof EVENT.ADMIN.UNLOCK
   | typeof EVENT.ADMIN.MUTE
   | typeof EVENT.ADMIN.UNMUTE
   | typeof EVENT.ADMIN.CONTROL

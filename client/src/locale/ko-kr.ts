@@ -52,34 +52,6 @@ export const controls = {
   unlock: '조작 잠금 해제하기',
 }
 
-export const locks = {
-  control: {
-    lock: '조작 잠그기 (사용자)',
-    unlock: '조작 잠금 해제하기 (사용자)',
-    locked: '조작이 잠겼습니다 (사용자)',
-    unlocked: '조작 잠금이 해제됐습니다 (사용자)',
-    notif_locked: '사용자의 조작을 잠궜습니다',
-    notif_unlocked: '사용자의 조작 잠금을 해제했습니다',
-  },
-  login: {
-    lock: '방 잠그기 (사용자)',
-    unlock: '방 잠금 해제하기 (사용자)',
-    locked: '방이 잠겼습니다 (사용자)',
-    unlocked: '방 잠금이 해제됐습니다 (사용자)',
-    notif_locked: '방이 잠겼습니다',
-    notif_unlocked: '방 잠금이 해제됐습니다',
-  },
-  // TODO
-  //file_transfer: {
-  //  lock: 'Lock File Transfer (for users)',
-  //  unlock: 'Unlock File Transfer (for users)',
-  //  locked: 'File Transfer Locked (for users)',
-  //  unlocked: 'File Transfer Unlocked (for users)',
-  //  notif_locked: 'locked file transfer',
-  //  notif_unlocked: 'unlocked file transfer',
-  //},
-}
-
 export const setting = {
   scroll: '스크롤 감도',
   scroll_invert: '스크롤 반전',

@@ -1,6 +1,6 @@
 <template>
   <ul>
-    <li v-if="!implicitHosting && (!controlLocked || hosting)">
+    <li v-if="!implicitHosting && hosting">
       <i
         :class="[
           !disabeld && shakeKbd ? 'shake' : '',
@@ -22,9 +22,9 @@
     </li>
     <li class="no-pointer" v-if="implicitHosting">
       <i
-        :class="[controlLocked ? 'disabled' : '', 'fas', 'fa-mouse-pointer']"
+        :class="['fas', 'fa-mouse-pointer']"
         v-tooltip="{
-          content: controlLocked ? $t('controls.hasnot') : $t('controls.has'),
+          content: $t('controls.has'),
           placement: 'top',
           offset: 5,
           boundariesElement: 'body',
@@ -32,7 +32,7 @@
         }"
       />
     </li>
-    <li v-if="implicitHosting || (!implicitHosting && (!controlLocked || hosting))">
+    <li v-if="implicitHosting || (!implicitHosting && hosting)">
       <label
         class="switch"
         v-tooltip="{
@@ -43,7 +43,7 @@
           delay: { show: 300, hide: 100 },
         }"
       >
-        <input type="checkbox" v-model="locked" :disabled="!hosting || (implicitHosting && controlLocked)" />
+        <input type="checkbox" v-model="locked" :disabled="!hosting || implicitHosting" />
         <span />
       </label>
     </li>
@@ -257,10 +257,6 @@
   @Component({ name: 'neko-controls' })
   export default class extends Vue {
     @Prop(Boolean) readonly shakeKbd!: boolean
-
-    get controlLocked() {
-      return 'control' in this.$accessor.locked && this.$accessor.locked['control'] && !this.$accessor.user.admin
-    }
 
     get disabeld() {
       return this.$accessor.remote.hosted
