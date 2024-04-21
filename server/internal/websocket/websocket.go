@@ -20,18 +20,10 @@ import (
 	"m1k1o/neko/internal/websocket/state"
 )
 
-const CONTROL_PROTECTION_SESSION = "by_control_protection"
-
 func New(sessions types.SessionManager, desktop types.DesktopManager, capture types.CaptureManager, webrtc types.WebRTCManager, conf *config.WebSocket) *WebSocketHandler {
 	logger := log.With().Str("module", "websocket").Logger()
 
 	state := state.New()
-
-	// if control protection is enabled
-	if conf.ControlProtection {
-		state.Lock("control", CONTROL_PROTECTION_SESSION)
-		logger.Info().Msgf("control locked on behalf of control protection")
-	}
 
 	// apply default locks
 	for _, lock := range conf.Locks {
@@ -113,24 +105,6 @@ func (ws *WebSocketHandler) Start() {
 					ws.logger.Debug().Str("id", e.Id).Msg("session connected")
 				}
 
-				// if control protection is enabled and at least one admin
-				// and if room was locked on behalf control protection, unlock
-				sess, ok := ws.state.GetLocked("control")
-				if ok && ws.conf.ControlProtection && sess == CONTROL_PROTECTION_SESSION && len(ws.sessions.Admins()) > 0 {
-					ws.state.Unlock("control")
-					ws.sessions.SetControlLocked(false) // TODO: Handle locks in sessions as flags.
-					ws.logger.Info().Msgf("control unlocked on behalf of control protection")
-
-					if err := ws.sessions.Broadcast(
-						message.AdminLock{
-							Event:    event.ADMIN_UNLOCK,
-							ID:       e.Id,
-							Resource: "control",
-						}, nil); err != nil {
-						ws.logger.Warn().Err(err).Msgf("broadcasting event %s has failed", event.ADMIN_UNLOCK)
-					}
-				}
-
 				// remove outdated stats
 				if e.Session.Admin() {
 					ws.lastAdminLeftAt = nil
@@ -146,25 +120,6 @@ func (ws *WebSocketHandler) Start() {
 
 				membersCount := len(ws.sessions.Members())
 				adminCount := len(ws.sessions.Admins())
-
-				// if control protection is enabled and no admin
-				// and room is not locked, lock
-				ok := ws.state.IsLocked("control")
-				if !ok && ws.conf.ControlProtection && adminCount == 0 {
-					ws.state.Lock("control", CONTROL_PROTECTION_SESSION)
-					ws.sessions.SetControlLocked(true) // TODO: Handle locks in sessions as flags.
-					ws.logger.Info().Msgf("control locked and released on behalf of control protection")
-					ws.handler.AdminRelease(e.Id, e.Session)
-
-					if err := ws.sessions.Broadcast(
-						message.AdminLock{
-							Event:    event.ADMIN_LOCK,
-							ID:       e.Id,
-							Resource: "control",
-						}, nil); err != nil {
-						ws.logger.Warn().Err(err).Msgf("broadcasting event %s has failed", event.ADMIN_LOCK)
-					}
-				}
 
 				// if this was the last admin
 				if e.Session.Admin() && adminCount == 0 {
@@ -312,8 +267,7 @@ func (ws *WebSocketHandler) Stats() types.Stats {
 		LastAdminLeftAt: ws.lastAdminLeftAt,
 		LastUserLeftAt:  ws.lastUserLeftAt,
 
-		ControlProtection: ws.conf.ControlProtection,
-		ImplicitControl:   ws.webrtc.ImplicitControl(),
+		ImplicitControl: ws.webrtc.ImplicitControl(),
 	}
 }
 

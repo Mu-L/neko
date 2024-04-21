@@ -17,8 +17,7 @@ type Stats struct {
 	LastAdminLeftAt *time.Time `json:"last_admin_left_at"`
 	LastUserLeftAt  *time.Time `json:"last_user_left_at"`
 
-	ControlProtection bool `json:"control_protection"`
-	ImplicitControl   bool `json:"implicit_control"`
+	ImplicitControl bool `json:"implicit_control"`
 }
 
 type WebSocket interface {
