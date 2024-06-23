@@ -1,0 +1,7 @@
+test-results/
+playwright-report/
+
+/src/page/plugins/*
+!/src/page/plugins/filetransfer
+!/src/page/plugins/chat
+!/src/page/plugins/.gitkeep

@@ -1,6 +1,5 @@
 {
   "go.inferGopath": false,
-  "go.autocompleteUnimportedPackages": true,
   "go.delveConfig": {
     "useApiV1": false
   },
@@ -9,5 +8,14 @@
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit"
     }
-  }
+  },
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "files.encoding": "utf8",
+  "files.eol": "\n",
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
 }
