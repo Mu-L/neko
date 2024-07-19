@@ -16,6 +16,11 @@ export default defineConfig({
   server: {
     port: 3001,
     proxy: process.env.NEKO_HOST ? {
+      '/ws': {
+        target: 'http://' + process.env.NEKO_HOST + ':' + process.env.NEKO_PORT + '/',
+        changeOrigin: true,
+        ws: true
+      },
       '/api': {
         target: 'http://' + process.env.NEKO_HOST + ':' + process.env.NEKO_PORT + '/',
         changeOrigin: true,

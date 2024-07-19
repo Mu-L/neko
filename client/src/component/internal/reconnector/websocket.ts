@@ -34,7 +34,7 @@ export class WebsocketReconnector extends ReconnectorAbstract {
     }
 
     let url = this._state.url
-    url = url.replace(/^http/, 'ws').replace(/\/+$/, '') + '/api/ws'
+    url = url.replace(/^http/, 'ws').replace(/\/+$/, '') + '/ws'
 
     const token = this._state.token
     if (token) {
